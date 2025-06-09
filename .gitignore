@@ -1,0 +1,22 @@
+# Global
+node_modules/
+.env
+.env.*     # incluye .env.local, .env.production, etc.
+dist/
+build/
+.DS_Store
+*.log
+*.lock
+npm-debug.log*
+
+# React (frontend)
+frontend/.env
+frontend/.env.* 
+frontend/node_modules/
+frontend/build/
+
+# NestJS (backend)
+backend/node_modules/
+backend/dist/
+backend/.env
+backend/.env.*
