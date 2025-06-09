@@ -8,7 +8,7 @@ Este proyecto utiliza **React (frontend)**, **NestJS (backend)** y **Supabase** 
 
 | Etapa                        | Comando / Acción                                                                                      | Directorio       |
 |-----------------------------|--------------------------------------------------------------------------------------------------------|------------------|
-| 🔧 Crear proyecto React     | `npx create-react-app frontend --template typescript`                                                  | `futbol-app/`    |
+| 🔧 Crear proyecto React     | `npm create vite@latest frontend`                                                                      | `futbol-app/`    |
 | 🔧 Crear proyecto NestJS    | `nest new backend`                                                                                     | `futbol-app/`    |
 | 🌐 Instalar Supabase (React) | `npm install @supabase/supabase-js`                                                                   | `frontend/`      |
 | 🔐 Variables de entorno (React) | Crear `.env` con: <br> `VITE_SUPABASE_URL=...` <br> `VITE_SUPABASE_ANON_KEY=...`                     | `frontend/`      |
