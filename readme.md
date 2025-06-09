@@ -19,27 +19,5 @@ Este proyecto utiliza **React (frontend)**, **NestJS (backend)** y **Supabase** 
 | 🧪 Probar frontend           | `npm run dev` o `npm start` (según configuración)                                                     | `frontend/`      |
 | 🧪 Probar backend            | `npm run start:dev`                                                                                    | `backend/`       |
 | 📁 Control de versiones     | Crear archivo `.gitignore` con exclusiones para `.env`, `node_modules/`, `dist/`, etc.                | `futbol-app/`    |
-| 🔒 Seguridad recomendada    | **Nunca** subir `.env` ni `SUPABASE_SERVICE_ROLE_KEY` al repositorio público                         | 🛡️                |
 
 ---
-
-## 📁 Estructura de Carpetas
-
-futbol-app/
-├── frontend/ # React + Supabase (cliente)
-│ ├── src/
-│ │ ├── api/ # Conexión a Supabase
-│ │ ├── components/ # Componentes de UI
-│ │ ├── pages/ # Vistas
-│ │ ├── hooks/ # Custom hooks
-│ │ └── App.tsx
-│ └── .env
-├── backend/ # NestJS (API REST)
-│ ├── src/
-│ │ ├── modules/ # Módulos como teams, players, etc.
-│ │ │ ├── teams/
-│ │ │ └── players/
-│ │ ├── config/ # Supabase, configuración general
-│ │ └── main.ts
-│ └── .env
-└── .gitignore
