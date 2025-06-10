@@ -1,4 +1,6 @@
+
 import { useAuth } from '../context/AuthContext';
+import { FeatureButton } from '../components/FeatureButton';
 import './Dashboard.css';
 
 export const Dashboard = () => {
@@ -34,16 +36,18 @@ export const Dashboard = () => {
           <h2>¡Bienvenido a Futbol App!</h2>
           <p>Has iniciado sesión exitosamente como: <strong>{user?.email}</strong></p>
           <div className="features-grid">
-            <div className="feature-card">
-              <div className="feature-icon">👥</div>
-              <h3>Equipos</h3>
-              <p>Gestiona y crea equipos de fútbol</p>
-            </div>
-            <div className="feature-card">
-              <div className="feature-icon">🏃‍♂️</div>
-              <h3>Jugadores</h3>
-              <p>Administra información de jugadores</p>
-            </div>
+            <FeatureButton
+              icon={<>👥</>}
+              title="Equipos"
+              description="Gestiona y crea equipos de fútbol"
+              to="/equipos"
+            />
+            <FeatureButton
+              icon={<>🏃‍♂️</>}
+              title="Jugadores"
+              description="Administra información de jugadores"
+              to="/jugadores"
+            />
           </div>
         </div>
       </main>
