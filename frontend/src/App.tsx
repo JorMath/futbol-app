@@ -2,6 +2,7 @@ import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-d
 import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './pages/LoginPage';
 import { Dashboard } from './pages/Dashboard';
+import { TeamsPage } from './pages/TeamsPage';
 import './App.css';
 
 // Componente para proteger rutas
@@ -47,12 +48,19 @@ function AppContent() {
               <LoginPage />
             </PublicRoute>
           } 
-        />
-        <Route 
+        />        <Route 
           path="/" 
           element={
             <ProtectedRoute>
               <Dashboard />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/equipos" 
+          element={
+            <ProtectedRoute>
+              <TeamsPage />
             </ProtectedRoute>
           } 
         />
