@@ -94,6 +94,7 @@
   border-bottom: 1px solid var(--border-green);
   background: var(--background-green);
   flex-shrink: 0;
+  text-align: center;
 }
 
 .chat-header h3 {
@@ -155,44 +156,64 @@
   font-family: 'Inter', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
 }
 
-.connection-status {
-  position: absolute;
+/* Indicador de conexión fijo en esquina inferior derecha */
+.connection-status-fixed {
+  position: fixed;
   bottom: 20px;
-  left: 50%;
-  transform: translateX(-50%);
+  right: 20px;
   z-index: 1000;
 }
 
 .connection-indicator {
-  background: var(--primary-green);
-  color: var(--white);
-  padding: 8px 16px;
-  border-radius: var(--radius-xl);
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
   display: flex;
   align-items: center;
   gap: 8px;
-  font-size: 14px;
+  font-size: 12px;
+  font-weight: 500;
   box-shadow: var(--shadow-md);
+  border: 2px solid transparent;
+  transition: all 0.3s ease;
 }
 
-.loading-spinner-small {
-  width: 16px;
-  height: 16px;
-  border: 2px solid rgba(255, 255, 255, 0.3);
-  border-top: 2px solid var(--white);
-  border-radius: 50%;
-  animation: spin 1s linear infinite;
+.connection-indicator.connected {
+  background: rgba(52, 199, 89, 0.1);
+  color: var(--primary-green);
+  border-color: var(--primary-green);
 }
 
-@keyframes spin {
-  0% { transform: rotate(0deg); }
-  100% { transform: rotate(360deg); }
+.connection-indicator.disconnected {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--error-red);
+  border-color: var(--error-red);
+}
+
+.connected-icon {
+  color: var(--primary-green);
+  animation: pulse-green 2s infinite;
+}
+
+.disconnected-icon {
+  color: var(--error-red);
+  animation: pulse-red 2s infinite;
+}
+
+@keyframes pulse-green {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.6; }
+}
+
+@keyframes pulse-red {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.3; }
 }
 
 /* Responsive */
 @media (max-width: 768px) {
   .chat-content {
     flex-direction: column;
+    gap: 8px;
   }
   
   .chat-sidebar {
@@ -201,7 +222,7 @@
     height: 180px;
     max-height: 180px;
     border-right: none;
-    border-bottom: 1px solid #e9ecef;
+    border-bottom: 1px solid var(--border-green);
   }
   
   .chat-main {
@@ -215,6 +236,11 @@
   
   .user-list-content {
     padding: 0;
+  }
+
+  .connection-status-fixed {
+    bottom: 16px;
+    right: 16px;
   }
 }
 
@@ -234,9 +260,13 @@
   }
   
   .connection-indicator {
-    padding: 6px 12px;
-    font-size: 13px;
-    bottom: 10px;
+    padding: 6px 8px;
+    font-size: 11px;
+  }
+  
+  .connection-status-fixed {
+    bottom: 12px;
+    right: 12px;
   }
   
   .message-area-header {

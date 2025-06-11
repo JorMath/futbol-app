@@ -38,11 +38,8 @@ export const ChatContainer: React.FC = () => {  const {
       )}
 
       <div className="chat-content">
-        <div className="chat-sidebar">
-          <div className="chat-header">
-            <h3>Chat General</h3>            <div className="user-info">
-              <span className="current-user">Hola {user?.name}</span>
-            </div>
+        <div className="chat-sidebar">          <div className="chat-header">
+            <h3>Chat General</h3>
           </div>
           <UserList
             users={users}
@@ -52,9 +49,6 @@ export const ChatContainer: React.FC = () => {  const {
         </div>        <div className="chat-main">
           <div className="chat-messages-header">
             <h4>Chat Grupal</h4>
-            <span className="online-indicator">
-              {isConnected ? 'Conectado' : 'Desconectado'}
-            </span>
           </div>
           
           <MessageArea
@@ -77,14 +71,13 @@ export const ChatContainer: React.FC = () => {  const {
         </div>
       </div>
 
-      {!isConnected && (
-        <div className="connection-status">
-          <div className="connection-indicator">
-            <div className="loading-spinner-small"></div>
-            <span>Conectando al chat...</span>
-          </div>
+      {/* Indicador de conexión fijo en esquina inferior derecha */}
+      <div className="connection-status-fixed">
+        <div className={`connection-indicator ${isConnected ? 'connected' : 'disconnected'}`}>
+          <i className={`fas fa-wifi ${isConnected ? 'connected-icon' : 'disconnected-icon'}`}></i>
+          <span>{isConnected ? 'Conectado' : 'Desconectado'}</span>
         </div>
-      )}
+      </div>
     </div>
   );
 };
