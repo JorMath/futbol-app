@@ -13,6 +13,17 @@
   -moz-osx-font-smoothing: grayscale;
 }
 
+/* Fuentes personalizadas para el chat */
+.chat-mono-font {
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+  font-feature-settings: 'liga' 1, 'calt' 1;
+}
+
+.chat-sans-font {
+  font-family: 'Inter', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+  font-feature-settings: 'cv02', 'cv03', 'cv04', 'cv11';
+}
+
 a {
   font-weight: 500;
   color: #646cff;
@@ -24,10 +35,9 @@ a:hover {
 
 body {
   margin: 0;
-  display: flex;
-  place-items: center;
   min-width: 320px;
   min-height: 100vh;
+  overflow-x: hidden;
 }
 
 h1 {
@@ -52,6 +62,17 @@ button:hover {
 button:focus,
 button:focus-visible {
   outline: 4px auto -webkit-focus-ring-color;
+}
+
+/* Estilos para iconos de Font Awesome */
+.fa, .fas, .far, .fal, .fab {
+  line-height: 1;
+  vertical-align: baseline;
+}
+
+/* Estilos específicos para botones con iconos */
+.back-button i {
+  margin-right: 8px;
 }
 
 @media (prefers-color-scheme: light) {

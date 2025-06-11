@@ -3,6 +3,7 @@ import { AuthProvider, useAuth } from './context/AuthContext';
 import { LoginPage } from './pages/LoginPage';
 import { Dashboard } from './pages/Dashboard';
 import { TeamsPage } from './pages/TeamsPage';
+import { ChatPage } from './pages/ChatPage';
 import './App.css';
 
 // Componente para proteger rutas
@@ -55,12 +56,19 @@ function AppContent() {
               <Dashboard />
             </ProtectedRoute>
           } 
-        />
-        <Route 
+        />        <Route 
           path="/equipos" 
           element={
             <ProtectedRoute>
               <TeamsPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/chat" 
+          element={
+            <ProtectedRoute>
+              <ChatPage />
             </ProtectedRoute>
           } 
         />

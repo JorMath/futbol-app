@@ -1,0 +1,73 @@
+.chat-message {
+  margin-bottom: 12px;
+  display: flex;
+  width: 100%;
+}
+
+.chat-message.own-message {
+  justify-content: flex-end;
+}
+
+.chat-message.other-message {
+  justify-content: flex-start;
+}
+
+.message-content {
+  max-width: 70%;
+  background: var(--gray-100);
+  padding: 8px 12px;
+  border-radius: var(--radius-lg);
+  position: relative;
+  word-wrap: break-word;
+  box-shadow: var(--shadow-sm);
+}
+
+.own-message .message-content {
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+  color: var(--white);
+  border-bottom-right-radius: var(--radius-sm);
+}
+
+.other-message .message-content {
+  background: var(--white);
+  color: var(--gray-800);
+  border: 1px solid var(--border-green);
+  border-bottom-left-radius: var(--radius-sm);
+}
+
+.message-sender {
+  font-size: 12px;
+  font-weight: 600;
+  color: var(--primary-green);
+  margin-bottom: 4px;
+  font-family: 'Inter', 'SF Pro Display', 'Segoe UI', 'Roboto', 'Helvetica Neue', Arial, sans-serif;
+}
+
+.message-text {
+  font-size: 14px;
+  line-height: 1.4;
+  margin-bottom: 4px;
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+.message-time {
+  font-size: 11px;
+  opacity: 0.7;
+  text-align: right;
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+.other-message .message-time {
+  text-align: left;
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .message-content {
+    max-width: 85%;
+  }
+  
+  .message-text {
+    font-size: 13px;
+  }
+}

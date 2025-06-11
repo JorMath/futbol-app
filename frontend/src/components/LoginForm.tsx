@@ -59,10 +59,11 @@ export const LoginForm: React.FC<LoginFormProps> = ({ onToggleForm, isSignUp }) 
 
   return (
     <div className="login-container">
-      <div className="login-card">
-        <div className="login-header">
+      <div className="login-card">        <div className="login-header">
           <div className="logo-container">
-            <div className="logo">⚽</div>
+            <div className="logo">
+              <i className="fas fa-futbol"></i>
+            </div>
           </div>
           <h1 className="login-title">
             {isSignUp ? 'Crear Cuenta' : 'Iniciar Sesión'}

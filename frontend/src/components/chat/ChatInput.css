@@ -1,0 +1,99 @@
+.chat-input-form {
+  padding: 12px 16px;
+  border-top: 1px solid var(--border-green);
+  background: var(--white);
+  flex-shrink: 0;
+}
+
+.chat-input-container {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  max-width: 100%;
+}
+
+.chat-input {
+  flex: 1;
+  min-width: 0;
+  padding: 10px 16px;
+  border: 1px solid var(--gray-300);
+  border-radius: var(--radius-xl);
+  font-size: 14px;
+  outline: none;
+  transition: all 0.2s ease;
+  resize: none;
+  background: var(--white);
+  color: var(--gray-800);
+  font-family: 'Fira Code', 'JetBrains Mono', 'SF Mono', 'Monaco', 'Consolas', 'Liberation Mono', 'Courier New', monospace;
+}
+
+.chat-input:focus {
+  border-color: var(--primary-green);
+  box-shadow: 0 0 0 2px rgba(52, 199, 89, 0.1);
+}
+
+.chat-input:disabled {
+  background-color: var(--gray-100);
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+.chat-send-button {
+  width: 40px;
+  height: 40px;
+  border: none;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
+  color: var(--white);
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  box-shadow: var(--shadow-sm);
+  font-size: 14px;
+}
+
+.chat-send-button:hover:not(:disabled) {
+  background: linear-gradient(135deg, var(--primary-green-dark) 0%, var(--primary-green) 100%);
+  transform: translateY(-1px);
+  box-shadow: var(--shadow-md);
+}
+
+.chat-send-button:active {
+  transform: translateY(0);
+}
+
+.chat-send-button:disabled {
+  background: var(--gray-400);
+  cursor: not-allowed;
+  opacity: 0.6;
+  transform: none;
+  box-shadow: none;
+}
+
+.chat-send-button svg {
+  transition: transform 0.2s ease;
+}
+
+.chat-send-button:hover:not(:disabled) svg {
+  transform: translateX(1px);
+}
+
+/* Responsive */
+@media (max-width: 768px) {
+  .chat-input-form {
+    padding: 12px;
+  }
+  
+  .chat-input {
+    padding: 10px 14px;
+    font-size: 16px; /* Para evitar zoom en iOS */
+  }
+  
+  .chat-send-button {
+    width: 44px;
+    height: 44px;
+  }
+}
