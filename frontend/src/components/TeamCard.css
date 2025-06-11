@@ -11,7 +11,7 @@ body{
 .card {
   display: flex;
   position: relative;
-  width: fit-content;
+  width: 100%;
   height: fit-content;
   background: linear-gradient(135deg, #22c55e 0%, #16a34a 100%);
   border-radius: 20px;
