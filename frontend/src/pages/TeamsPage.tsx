@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useTeams } from '../hooks/useTeams';
 import { TeamModal } from '../components/TeamModal';
 import { ConfirmModal } from '../components/ConfirmModal';
-import { Team } from '../types/team';
+import type { Team } from '../types/team';
 import './TeamsPage.css';
 
 export const TeamsPage: React.FC = () => {

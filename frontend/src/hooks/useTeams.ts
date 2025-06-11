@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { Team } from '../types/team';
-import { getTeams, createTeam, updateTeam, deleteTeam, CreateTeamData, UpdateTeamData } from '../api/teams';
+import type { Team } from '../types/team';
+import { getTeams, createTeam, updateTeam, deleteTeam } from '../api/teams';
+import type { CreateTeamData, UpdateTeamData } from '../api/teams';
 
 export const useTeams = () => {
   const [teams, setTeams] = useState<Team[]>([]);

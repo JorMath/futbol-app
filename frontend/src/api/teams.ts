@@ -1,4 +1,4 @@
-import { Team } from '../types/team';
+import type { Team } from '../types/team';
 
 const API_BASE_URL = 'http://localhost:3000';
 
