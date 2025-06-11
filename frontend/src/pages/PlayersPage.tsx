@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { playersApi, type Player } from '../api/players';
 import { getTeams } from '../api/teams';
 import type { Team } from '../types/team';
@@ -10,6 +11,7 @@ import './TeamsPage.css';
 import './Dashboard.css';
 
 export const PlayersPage: React.FC = () => {
+  const navigate = useNavigate();
   const { user, signOut } = useAuth();
   const [players, setPlayers] = useState<Player[]>([]);
   const [teams, setTeams] = useState<Team[]>([]);
@@ -72,10 +74,9 @@ export const PlayersPage: React.FC = () => {
       } catch {
         setError('Error al eliminar jugador');
       }
-    }
-  };
+    }  };
 
-  const handleSave = (player: Player) => {
+  const handleSave = (_player: Player) => {
     setIsModalOpen(false);
     fetchPlayers();
   };
@@ -100,10 +101,17 @@ export const PlayersPage: React.FC = () => {
           </div>
         </div>
       </header>
-      <main className="dashboard-main">
-        <div className="welcome-card">
+      <main className="dashboard-main">        <div className="welcome-card">
           <div className="teams-header">
-            <h1>Jugadores</h1>
+            <div className="header-left">
+              <button 
+                className="btn-secondary"
+                onClick={() => navigate('/dashboard')}
+              >
+                ← Volver al Dashboard
+              </button>
+              <h1>Jugadores</h1>
+            </div>
             <button className="btn-primary" onClick={handleAdd}>
               + Nuevo Jugador
             </button>

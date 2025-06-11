@@ -1,6 +1,6 @@
 import type { Team } from '../types/team';
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = '/api'; // Ruta relativa para el monolito
 
 export interface CreateTeamData {
   name: string;

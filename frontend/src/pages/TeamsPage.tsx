@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import { useTeams } from '../hooks/useTeams';
 import { TeamModal } from '../components/TeamModal';
 import { ConfirmModal } from '../components/ConfirmModal';
@@ -7,6 +8,7 @@ import type { Team } from '../types/team';
 import './TeamsPage.css';
 
 export const TeamsPage: React.FC = () => {
+  const navigate = useNavigate();
   const { teams, loading, error, addTeam, editTeam, removeTeam } = useTeams();
   const [isCreateModalOpen, setIsCreateModalOpen] = useState(false);
   const [isEditModalOpen, setIsEditModalOpen] = useState(false);
@@ -51,10 +53,17 @@ export const TeamsPage: React.FC = () => {
     );
   }
 
-  return (
-    <div className="teams-page">
+  return (    <div className="teams-page">
       <div className="teams-header">
-        <h1>Equipos</h1>
+        <div className="header-left">
+          <button 
+            className="btn-secondary"
+            onClick={() => navigate('/dashboard')}
+          >
+            ← Volver al Dashboard
+          </button>
+          <h1>Equipos</h1>
+        </div>
         <button 
           className="btn-primary"
           onClick={() => setIsCreateModalOpen(true)}

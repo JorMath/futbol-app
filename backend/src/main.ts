@@ -7,8 +7,10 @@ import { Logger, ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
   const logger = new Logger('Bootstrap');
+    const app = await NestFactory.create(AppModule);
   
-  const app = await NestFactory.create(AppModule);
+  // Configurar prefijo global para las APIs
+  app.setGlobalPrefix('api');
   
   // Habilitar validación global
   app.useGlobalPipes(new ValidationPipe({
@@ -17,15 +19,14 @@ async function bootstrap() {
     forbidNonWhitelisted: true,
     validateCustomDecorators: true,
   }));
-  
-  // Habilitar CORS para el frontend
+    // Habilitar CORS para el frontend
   app.enableCors({
-    origin: ['http://localhost:5173', 'http://127.0.0.1:5173'], // URLs del frontend
+    origin: ['http://localhost:3000', 'http://127.0.0.1:3000'], // URLs del monolito
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
 
-  const port = process.env.PORT ?? 3000;
+  const port = 3000; // Puerto fijo para el monolito
   await app.listen(port);
   
   logger.log(`Backend running on http://localhost:${port}`);

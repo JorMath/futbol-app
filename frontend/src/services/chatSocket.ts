@@ -15,9 +15,7 @@ class ChatSocketService {
 
         if (this.socket) {
           this.disconnect();
-        }
-
-        this.socket = io('http://localhost:3000/chat', {
+        }        this.socket = io('/chat', {
           transports: ['websocket'],
           forceNew: true,
         });

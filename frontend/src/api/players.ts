@@ -1,6 +1,6 @@
 import type { Player } from '../types/player'; // Ensure correct relative path
 
-const API_BASE_URL = 'http://localhost:3000';
+const API_BASE_URL = '/api'; // Ruta relativa para el monolito
 
 export interface CreatePlayerData {
   name: string;

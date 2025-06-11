@@ -1,5 +1,21 @@
 {
+  "name": "futbol-app-monolito",
+  "version": "1.0.0",
+  "description": "Aplicación de fútbol como monolito",
+  "private": true,  "scripts": {
+    "dev": "npm run build:frontend && concurrently \"npm run dev:backend\" \"npm run dev:frontend\"",
+    "dev:backend": "cd backend && npm run start:dev",
+    "dev:frontend": "cd frontend && npm run dev",
+    "build": "npm run build:frontend && npm run build:backend",
+    "build:frontend": "cd frontend && npm run build",
+    "build:backend": "cd backend && npm run build",
+    "start": "cd backend && npm run start:prod",
+    "start:monolito": "npm run build:frontend && npm run dev:backend",
+    "install:all": "npm install && cd backend && npm install && cd ../frontend && npm install",
+    "clean": "rimraf backend/public && rimraf backend/dist && rimraf frontend/dist"
+  },
   "devDependencies": {
-    "typescript": "^5.8.3"
+    "concurrently": "^8.2.2",
+    "rimraf": "^5.0.5"
   }
 }

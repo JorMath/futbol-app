@@ -1,8 +1,54 @@
-# ⚽ Proyecto: Sistema de Gestión de Equipos de Fútbol
+# ⚽ Futbol App - Monolito
 
-Este proyecto utiliza **React (frontend)**, **NestJS (backend)** y **Supabase** para autenticación y base de datos. Comienza como un monolito, pero está diseñado para migrar a una arquitectura de microservicios.
+Aplicación de gestión de equipos y jugadores de fútbol con chat en tiempo real.
 
----
+## 🚀 Instalación y Ejecución
+
+### 1. Clonar el repositorio
+```bash
+git clone <url-del-repositorio>
+cd futbol-app
+```
+
+### 2. Instalar dependencias
+```bash
+npm run install:all
+```
+
+### 3. Configurar variables de entorno
+
+**Backend** (`backend/.env`):
+```env
+SUPABASE_URL=tu_supabase_url
+SUPABASE_SERVICE_ROLE_KEY=tu_service_role_key
+PORT=3000
+```
+
+**Frontend** (`frontend/.env`):
+```env
+VITE_SUPABASE_URL=tu_supabase_url
+VITE_SUPABASE_ANON_KEY=tu_anon_key
+```
+
+### 4. Ejecutar la aplicación
+```bash
+npm run start:monolito
+```
+
+La aplicación estará disponible en: **http://localhost:3000**
+
+## 📁 Estructura
+
+- `backend/`: Servidor NestJS (APIs + archivos estáticos)
+- `frontend/`: Aplicación React compilada en `backend/public`
+- Un solo puerto (3000) para toda la aplicación
+
+## 🛠️ Scripts Disponibles
+
+- `npm run start:monolito` - Ejecuta el monolito completo
+- `npm run build` - Compila para producción
+- `npm run install:all` - Instala todas las dependencias
+- `npm run clean` - Limpia archivos compilados
 
 ## 📦 Guía de Instalación y Configuración
 
