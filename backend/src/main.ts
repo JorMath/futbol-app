@@ -3,11 +3,10 @@ config(); // Cargar variables de entorno al inicio
 
 import { NestFactory } from '@nestjs/core';
 import { AppModule } from './app.module';
-import { Logger, ValidationPipe } from '@nestjs/common';
+import { ValidationPipe } from '@nestjs/common';
 
 async function bootstrap() {
-  const logger = new Logger('Bootstrap');
-    const app = await NestFactory.create(AppModule);
+  const app = await NestFactory.create(AppModule);
   
   // Configurar prefijo global para las APIs
   app.setGlobalPrefix('api');
@@ -25,11 +24,7 @@ async function bootstrap() {
     methods: 'GET,HEAD,PUT,PATCH,POST,DELETE,OPTIONS',
     credentials: true,
   });
-
   const port = 3000; // Puerto fijo para el monolito
   await app.listen(port);
-  
-  logger.log(`Backend running on http://localhost:${port}`);
-  logger.log(`Health check: http://localhost:${port}/auth/health`);
 }
 bootstrap();

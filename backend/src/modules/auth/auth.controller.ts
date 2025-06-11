@@ -5,7 +5,6 @@ import {
   Body, 
   HttpException, 
   HttpStatus, 
-  Logger, 
   Get, 
   Param,
   ValidationPipe,
@@ -17,20 +16,13 @@ import { LoginDto } from './dto/login.dto';
 
 @Controller('auth')
 export class AuthController {
-  private readonly logger = new Logger(AuthController.name);
-
   constructor(private readonly authService: AuthService) {}
 
   @Post('register')
   @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
-  async register(@Body() registerDto: RegisterDto) {
-    try {
-      this.logger.log(`Registration attempt for email: ${registerDto.email}`);
+  async register(@Body() registerDto: RegisterDto) {    try {
       const result = await this.authService.register(registerDto);
-      return result;
-    } catch (error) {
-      this.logger.error(`Registration failed: ${error.message}`, error.stack);
-      
+      return result;    } catch (error) {
       if (error instanceof HttpException) {
         throw error;
       }
@@ -52,14 +44,9 @@ export class AuthController {
 
   @Post('signin')
   @UsePipes(new ValidationPipe({ transform: true, whitelist: true }))
-  async signIn(@Body() loginDto: LoginDto) {
-    try {
-      this.logger.log(`Sign in attempt for email: ${loginDto.email}`);
+  async signIn(@Body() loginDto: LoginDto) {    try {
       const result = await this.authService.signIn(loginDto);
-      return result;
-    } catch (error) {
-      this.logger.error(`Sign in failed: ${error.message}`, error.stack);
-      
+      return result;    } catch (error) {
       if (error instanceof HttpException) {
         throw error;
       }
@@ -75,10 +62,7 @@ export class AuthController {
   async getUserById(@Param('id') id: string) {
     try {
       const user = await this.authService.getUserById(id);
-      return { success: true, user };
-    } catch (error) {
-      this.logger.error(`Get user failed: ${error.message}`, error.stack);
-      
+      return { success: true, user };    } catch (error) {
       throw new HttpException(
         'Usuario no encontrado',
         HttpStatus.NOT_FOUND

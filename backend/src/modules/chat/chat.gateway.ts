@@ -8,7 +8,6 @@ import {
   OnGatewayDisconnect,
 } from '@nestjs/websockets';
 import { Server, Socket } from 'socket.io';
-import { Logger } from '@nestjs/common';
 import { ChatService } from './chat.service';
 import { CreateMessageDto } from './dto/create-message.dto';
 
@@ -30,18 +29,15 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   @WebSocketServer()
   server: Server;
 
-  private readonly logger = new Logger(ChatGateway.name);
   private connectedUsers = new Map<string, AuthenticatedSocket>();
 
   constructor(private readonly chatService: ChatService) {}
   async handleConnection(client: AuthenticatedSocket) {
     // Solo log cuando hay problemas, no en conexiones normales
   }
-
   handleDisconnect(client: AuthenticatedSocket) {
     if (client.userId) {
       this.connectedUsers.delete(client.userId);
-      this.logger.log(`User ${client.userId} disconnected`);
       
       // Notificar a otros usuarios que este usuario se desconectó
       this.server.emit('user_disconnected', {
@@ -58,10 +54,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
   ) {
     try {
       client.userId = data.userId;
-      client.userName = data.userName;
-      this.connectedUsers.set(data.userId, client);
-      
-      this.logger.log(`User authenticated: ${data.userName} (${data.userId})`);
+      client.userName = data.userName;      this.connectedUsers.set(data.userId, client);
       
       // Notificar al cliente que la autenticación fue exitosa
       client.emit('authenticated', { success: true });
@@ -72,9 +65,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
         userName: data.userName
       });
       
-      return { success: true };
-    } catch (error) {
-      this.logger.error(`Authentication error: ${error.message}`);
+      return { success: true };    } catch (error) {
       client.emit('authenticated', { success: false, error: error.message });
       return { success: false, error: error.message };
     }
@@ -84,18 +75,13 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     @MessageBody() createMessageDto: CreateMessageDto,
     @ConnectedSocket() client: AuthenticatedSocket,
   ) {
-    try {
-      // Crear el mensaje en la base de datos
+    try {      // Crear el mensaje en la base de datos
       const message = await this.chatService.createMessage(createMessageDto);
-      
-      this.logger.log(`General message sent from ${message.sender_name}`);
       
       // Enviar el mensaje a todos los usuarios conectados (incluyendo el remitente)
       this.server.emit('new_message', message);
       
-      return { success: true, message };
-    } catch (error) {
-      this.logger.error(`Send message error: ${error.message}`);
+      return { success: true, message };    } catch (error) {
       client.emit('message_error', { error: error.message });
       return { success: false, error: error.message };
     }
@@ -106,9 +92,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     try {
       const messages = await this.chatService.getAllMessages();
       client.emit('messages_loaded', messages);
-      return { success: true, messages };
-    } catch (error) {
-      this.logger.error(`Get messages error: ${error.message}`);
+      return { success: true, messages };    } catch (error) {
       client.emit('messages_error', { error: error.message });
       return { success: false, error: error.message };
     }
@@ -119,9 +103,7 @@ export class ChatGateway implements OnGatewayConnection, OnGatewayDisconnect {
     try {
       const users = await this.chatService.getOnlineUsers();
       client.emit('users_loaded', users);
-      return { success: true, users };
-    } catch (error) {
-      this.logger.error(`Get users error: ${error.message}`);
+      return { success: true, users };    } catch (error) {
       client.emit('users_error', { error: error.message });
       return { success: false, error: error.message };
     }

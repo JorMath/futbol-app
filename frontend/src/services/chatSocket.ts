@@ -18,34 +18,23 @@ class ChatSocketService {
         }        this.socket = io('/chat', {
           transports: ['websocket'],
           forceNew: true,
-        });
-
-        this.socket.on('connect', () => {
-          console.log('Connected to chat server');
+        });        this.socket.on('connect', () => {
           this.isConnected = true;
           
           // Autenticar usuario
           this.socket!.emit('authenticate', { userId, userName });
-        });
-
-        this.socket.on('authenticated', (data: { success: boolean; error?: string }) => {
+        });        this.socket.on('authenticated', (data: { success: boolean; error?: string }) => {
           if (data.success) {
-            console.log('User authenticated successfully');
             resolve(true);
           } else {
-            console.error('Authentication failed:', data.error);
             reject(new Error(data.error || 'Authentication failed'));
           }
-        });
-
-        this.socket.on('connect_error', (error) => {
-          console.error('Connection error:', error);
+        });        this.socket.on('connect_error', (error) => {
           this.isConnected = false;
           reject(error);
         });
 
         this.socket.on('disconnect', () => {
-          console.log('Disconnected from chat server');
           this.isConnected = false;
         });
 
