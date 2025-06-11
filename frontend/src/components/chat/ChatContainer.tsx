@@ -40,11 +40,8 @@ export const ChatContainer: React.FC = () => {  const {
       <div className="chat-content">
         <div className="chat-sidebar">          <div className="chat-header">
             <h3>Chat General</h3>
-          </div>
-          <UserList
+          </div>          <UserList
             users={users}
-            currentUserId={user?.id || ''}
-            onlineUsers={new Set()}
           />
         </div>        <div className="chat-main">
           <div className="chat-messages-header">

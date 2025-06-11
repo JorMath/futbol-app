@@ -3,14 +3,10 @@ import './UserList.css';
 
 interface UserListProps {
   users: User[];
-  currentUserId: string;
-  onlineUsers?: Set<string>;
 }
 
 export const UserList: React.FC<UserListProps> = ({
   users,
-  currentUserId,
-  onlineUsers = new Set(),
 }) => {
   return (
     <div className="user-list">
