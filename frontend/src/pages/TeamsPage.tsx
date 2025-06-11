@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { useTeams } from '../hooks/useTeams';
 import { TeamModal } from '../components/TeamModal';
 import { ConfirmModal } from '../components/ConfirmModal';
+import { TeamCard } from '../components/TeamCard';
 import type { Team } from '../types/team';
 import './TeamsPage.css';
 
@@ -94,28 +95,12 @@ export const TeamsPage: React.FC = () => {
         ) : (
           <div className="teams-grid">
             {teams.map((team) => (
-              <div key={team.id} className="team-card">
-                <div className="team-info">
-                  <h3>{team.name}</h3>
-                  <p className="team-date">
-                    Creado: {formatDate(team.created_at)}
-                  </p>
-                </div>
-                <div className="team-actions">
-                  <button 
-                    className="btn-edit"
-                    onClick={() => openEditModal(team)}
-                  >
-                    Editar
-                  </button>
-                  <button 
-                    className="btn-delete"
-                    onClick={() => openDeleteModal(team)}
-                  >
-                    Eliminar
-                  </button>
-                </div>
-              </div>
+              <TeamCard
+                key={team.id}
+                team={team}
+                onEdit={openEditModal}
+                onDelete={openDeleteModal}
+              />
             ))}
           </div>
         )}
