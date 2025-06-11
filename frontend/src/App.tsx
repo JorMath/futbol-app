@@ -4,6 +4,7 @@ import { LoginPage } from './pages/LoginPage';
 import { Dashboard } from './pages/Dashboard';
 import { TeamsPage } from './pages/TeamsPage';
 import { ChatPage } from './pages/ChatPage';
+import { PlayersPage } from './pages/PlayersPage';
 import './App.css';
 
 // Componente para proteger rutas
@@ -69,6 +70,14 @@ function AppContent() {
           element={
             <ProtectedRoute>
               <ChatPage />
+            </ProtectedRoute>
+          } 
+        />
+        <Route 
+          path="/jugadores" 
+          element={
+            <ProtectedRoute>
+              <PlayersPage />
             </ProtectedRoute>
           } 
         />
