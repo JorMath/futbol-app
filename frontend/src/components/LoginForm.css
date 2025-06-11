@@ -145,8 +145,10 @@
 }
 
 .submit-button {
-  width: 100%;
-  padding: 16px;
+  width: 70%;
+  max-width: 280px;
+  margin: 8px auto 0;
+  padding: 14px 16px;
   background: linear-gradient(135deg, var(--primary-green) 0%, var(--accent-green) 100%);
   color: var(--white);
   border: none;
@@ -155,7 +157,6 @@
   font-weight: 600;
   cursor: pointer;
   transition: all 0.2s ease;
-  margin-top: 8px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -259,6 +260,10 @@
     width: 56px;
     height: 56px;
     font-size: 28px;
+  }
+  
+  .submit-button {
+    width: 90%;
   }
 }
 
