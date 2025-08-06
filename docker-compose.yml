@@ -1,0 +1,86 @@
+services:
+  # Frontend (React + Nginx)
+  frontend:
+    build:
+      context: ./frontend
+      dockerfile: Dockerfile
+    ports:
+      - "8000:80"
+    depends_on:
+      - api-gateway
+    environment:
+      - VITE_API_BASE_URL=http://localhost:8080/api
+    networks:
+      - futbol-network
+
+  # API Gateway
+  api-gateway:
+    build:
+      context: ./api-gateway
+      dockerfile: Dockerfile
+    ports:
+      - "8080:8080"
+    environment:
+      - PORT=8080
+      - AUTH_SERVICE_URL=http://auth-service:3001
+      - TEAMS_PLAYERS_SERVICE_URL=http://teams-players-service:3002
+      - CHAT_SERVICE_URL=http://chat-service:3003
+      - FRONTEND_URL=http://frontend:80
+    depends_on:
+      - auth-service
+      - teams-players-service
+      - chat-service
+    networks:
+      - futbol-network
+
+  # Auth Microservice
+  auth-service:
+    build:
+      context: ./microservices/auth-service
+      dockerfile: Dockerfile
+    ports:
+      - "3001:3001"
+    environment:
+      - PORT=3001
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SERVICE_NAME=auth-service
+    networks:
+      - futbol-network
+
+  # Teams & Players Microservice
+  teams-players-service:
+    build:
+      context: ./microservices/teams-players-service
+      dockerfile: Dockerfile
+    ports:
+      - "3002:3002"
+    environment:
+      - PORT=3002
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SERVICE_NAME=teams-players-service
+    networks:
+      - futbol-network
+
+  # Chat Microservice
+  chat-service:
+    build:
+      context: ./microservices/chat-service
+      dockerfile: Dockerfile
+    ports:
+      - "3003:3003"
+    environment:
+      - PORT=3003
+      - SUPABASE_URL=${SUPABASE_URL}
+      - SUPABASE_SERVICE_ROLE_KEY=${SUPABASE_SERVICE_ROLE_KEY}
+      - SERVICE_NAME=chat-service
+    networks:
+      - futbol-network
+
+networks:
+  futbol-network:
+    driver: bridge
+
+volumes:
+  futbol-data:

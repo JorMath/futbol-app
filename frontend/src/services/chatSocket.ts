@@ -17,7 +17,7 @@ class ChatSocketService {
           this.disconnect();
         }
 
-        this.socket = io('http://localhost:3000/chat', {
+        this.socket = io(import.meta.env.VITE_CHAT_SOCKET_URL || 'http://localhost:8000', {
           transports: ['websocket'],
           forceNew: true,
         });

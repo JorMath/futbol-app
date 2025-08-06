@@ -75,7 +75,7 @@ export const PlayersPage: React.FC = () => {
     }
   };
 
-  const handleSave = (player: Player) => {
+  const handleSave = () => {
     setIsModalOpen(false);
     fetchPlayers();
   };
