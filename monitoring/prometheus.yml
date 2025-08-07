@@ -1,0 +1,53 @@
+global:
+  scrape_interval: 15s
+  evaluation_interval: 15s
+
+rule_files:
+  # - "first_rules.yml"
+  # - "second_rules.yml"
+
+scrape_configs:
+  # Prometheus se monitorea a sí mismo
+  - job_name: 'prometheus'
+    static_configs:
+      - targets: ['localhost:9090']
+
+  # Node Exporter (métricas del sistema)
+  - job_name: 'node-exporter'
+    static_configs:
+      - targets: ['node-exporter:9100']
+
+  # API Gateway
+  - job_name: 'api-gateway'
+    static_configs:
+      - targets: ['futbol-app-api-gateway-1:8080']
+    metrics_path: '/api/metrics'
+    scrape_interval: 5s
+
+  # Auth Service
+  - job_name: 'auth-service'
+    static_configs:
+      - targets: ['futbol-app-auth-service-1:3001']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  # Teams & Players Service
+  - job_name: 'teams-players-service'
+    static_configs:
+      - targets: ['futbol-app-teams-players-service-1:3002']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  # Chat Service
+  - job_name: 'chat-service'
+    static_configs:
+      - targets: ['futbol-app-chat-service-1:3003']
+    metrics_path: '/metrics'
+    scrape_interval: 5s
+
+  # Frontend (nginx) - Comentado porque nginx no tiene métricas por defecto
+  # - job_name: 'frontend'
+  #   static_configs:
+  #     - targets: ['futbol-app-frontend-1:80']
+  #   metrics_path: '/metrics'
+  #   scrape_interval: 10s
